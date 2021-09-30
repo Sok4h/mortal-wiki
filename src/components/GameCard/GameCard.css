@@ -1,0 +1,16 @@
+.gameCard{  
+
+    width:120px;
+    margin: 10px;  
+}
+
+.gameCard__image{
+
+    width: 100%;
+}
+
+.gameCard__name{
+
+    margin: 0px;
+
+}

@@ -1,0 +1,20 @@
+.headerApp {
+    background: linear-gradient(0deg, rgba(65, 6, 6, 0.6), rgba(65, 6, 6, 0.6)),
+        linear-gradient(133.27deg, #fed548 2.77%, #f79440 25.86%, #f2633a 52.06%, #ea1b31 98.12%);
+
+        display: flex;
+        width: 100%;
+        justify-content:space-evenly;
+        align-items:center;
+        height:80px;
+}
+.logoContainer{
+
+    width:40px;
+    height:40px;
+}
+
+.logo{
+
+    width:100%;
+}
