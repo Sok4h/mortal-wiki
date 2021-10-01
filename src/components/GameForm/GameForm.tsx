@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { GameCardProps } from '../GameCard/GameCard'
+import './GameForm.css'
 
 interface GameFormProps {
   onCreate: (newGameElem: GameCardProps) => void;
@@ -31,8 +32,8 @@ const GameForm: React.FC<GameFormProps> = ({ onCreate }) => {
 
   return (<form className="GameForm" onSubmit={handleSubmit}>
 
-  <input  type="text" onChange={handleNameChange} value={name} />
-  <input  type="text" onChange={handleImgChange} value={img} />
+  <input placeholder="Game name" type="text" onChange={handleNameChange} value={name} />
+  <input placeholder="Image url"type="text" onChange={handleImgChange} value={img} />
   <button>Submit</button>
 
   </form>);

@@ -38,8 +38,9 @@ function App() {
   return (
     <div className="App">
 
-  <GameForm onCreate={handleCreate} />
      <Header></Header>
+     
+    <GameForm onCreate={handleCreate} />
      <h3 className="juegosDestacados">Juegos Destacados</h3>
       <article className="gallery">
         
