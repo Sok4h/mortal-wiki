@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/mortal-wiki/static/css/main.b0877bb6.chunk.css",
-    "main.js": "/mortal-wiki/static/js/main.9c7ef3b9.chunk.js",
-    "main.js.map": "/mortal-wiki/static/js/main.9c7ef3b9.chunk.js.map",
-    "runtime-main.js": "/mortal-wiki/static/js/runtime-main.e517b2de.js",
-    "runtime-main.js.map": "/mortal-wiki/static/js/runtime-main.e517b2de.js.map",
+    "main.css": "/mortal-wiki/static/css/main.20e66121.chunk.css",
+    "main.js": "/mortal-wiki/static/js/main.9e019491.chunk.js",
+    "main.js.map": "/mortal-wiki/static/js/main.9e019491.chunk.js.map",
+    "runtime-main.js": "/mortal-wiki/static/js/runtime-main.07e8e9ac.js",
+    "runtime-main.js.map": "/mortal-wiki/static/js/runtime-main.07e8e9ac.js.map",
     "static/js/2.ca841fab.chunk.js": "/mortal-wiki/static/js/2.ca841fab.chunk.js",
     "static/js/2.ca841fab.chunk.js.map": "/mortal-wiki/static/js/2.ca841fab.chunk.js.map",
-    "static/js/3.3c006113.chunk.js": "/mortal-wiki/static/js/3.3c006113.chunk.js",
-    "static/js/3.3c006113.chunk.js.map": "/mortal-wiki/static/js/3.3c006113.chunk.js.map",
+    "static/js/3.0d79f620.chunk.js": "/mortal-wiki/static/js/3.0d79f620.chunk.js",
+    "static/js/3.0d79f620.chunk.js.map": "/mortal-wiki/static/js/3.0d79f620.chunk.js.map",
     "index.html": "/mortal-wiki/index.html",
-    "static/css/main.b0877bb6.chunk.css.map": "/mortal-wiki/static/css/main.b0877bb6.chunk.css.map",
+    "static/css/main.20e66121.chunk.css.map": "/mortal-wiki/static/css/main.20e66121.chunk.css.map",
     "static/js/2.ca841fab.chunk.js.LICENSE.txt": "/mortal-wiki/static/js/2.ca841fab.chunk.js.LICENSE.txt",
     "static/media/logomk.4640112d.svg": "/mortal-wiki/static/media/logomk.4640112d.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e517b2de.js",
+    "static/js/runtime-main.07e8e9ac.js",
     "static/js/2.ca841fab.chunk.js",
-    "static/css/main.b0877bb6.chunk.css",
-    "static/js/main.9c7ef3b9.chunk.js"
+    "static/css/main.20e66121.chunk.css",
+    "static/js/main.9e019491.chunk.js"
   ]
 }
