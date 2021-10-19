@@ -1,0 +1,15 @@
+.bannerContainer{
+
+    width: 100%;
+    box-sizing: border-box;
+}
+.bannerImage{
+
+    width: 100%;
+
+}
+.bannerTitle{
+    margin: 10px;
+    font-weight: bold;
+    text-align: center;
+}

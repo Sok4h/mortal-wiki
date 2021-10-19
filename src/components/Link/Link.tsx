@@ -1,5 +1,6 @@
 import React from 'react';
 import './Link.css'
+import {Link as Rlink} from 'react-router-dom'
 
 interface LinkProps {
     text: string;
@@ -14,6 +15,6 @@ export const Link: React.FC<LinkProps> = (props) => {
     if (props.active) {
         className += " Link-active";
     }
-    return <a className={className} href={props.url}>{props.text}</a>;
+    return <Rlink className={className} to={props.url}>{props.text}</Rlink>;
 
 }

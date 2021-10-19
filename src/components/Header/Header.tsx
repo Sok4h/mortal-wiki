@@ -13,8 +13,8 @@ const Header: React.FC<HeaderProps> = ({ }) => {
         <div className="logoContainer">
         <img className="logo" src={logomk} alt="" />
         </div>
-        <Link text="Juegos" url="" ></Link>
-        <Link text="Escenarios" url="" ></Link>
+        <Link text="Home" url="home" ></Link>
+        <Link text="Form" url="form" ></Link>
         <Link text="Personajes" url="" ></Link>
     </header>;
 }
