@@ -1,0 +1,28 @@
+.imgContainer{
+
+    width: 60%;
+    margin: auto;
+    margin-top:10px;
+}
+
+.imgDetail{
+
+    width:100%;
+
+}
+
+.title{
+
+    margin: 0;
+    text-align: center;
+}
+
+h4{
+
+    margin-left: 20px;
+}
+.description{
+
+    margin-left: 20px;
+    max-width: 350px;
+}
