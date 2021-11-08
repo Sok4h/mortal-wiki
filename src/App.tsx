@@ -8,6 +8,9 @@ import Banner from './components/Banner/Banner';
 import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Game_Details from './components/Game_Details/Game_Details';
 import { GameElemObj } from './types/GameElemObj';
+import Character from './components/Character/Character';
+import { CharacterElemObj } from './types/CharacterObj';
+import CharacterForm from './components/CharacterForm/CharacterForm';
 
 
 
@@ -28,6 +31,16 @@ function App() {
     }
   ]);
 
+  const [ charactersElems, setCharacters ] = React.useState<CharacterElemObj[]>([
+    {
+      id: 0,
+      name: 'Liu Kang',
+      realm:"EarthRealm",
+      img:'https://playtecgames.com/wp-content/uploads/2020/05/mortal-ps4_2.jpg'
+
+    }
+    
+  ]);
 
   const handleCreate = (newGameElem: GameCardProps) => {
 
@@ -53,6 +66,30 @@ function App() {
     setGameElems(arrayCopy);
   }
 
+  const handleCharacterCreate = (newCharaterElem: CharacterElemObj) => {
+
+    const arrayCopy = charactersElems.slice();
+    arrayCopy.push({
+      id: newCharaterElem.id,
+      img: newCharaterElem.img,
+      name: newCharaterElem.name,
+      realm: newCharaterElem.realm,
+      biography: newCharaterElem.biography
+    });
+
+    const newArray = [
+      ...charactersElems,
+      {
+
+        img: newCharaterElem.img,
+        name: newCharaterElem.name,
+        realm: newCharaterElem.realm,
+        biography: newCharaterElem.biography
+      }
+    ];
+    setCharacters(arrayCopy);
+  }
+
 
 
   return (
@@ -64,7 +101,9 @@ function App() {
         <Switch>
           <Route path="/form">
             <GameForm onCreate={handleCreate} />
+            <CharacterForm onCreate={handleCharacterCreate}/>
           </Route>
+
 
           <Route path="/home">
 
@@ -86,6 +125,12 @@ function App() {
 
           <Route path="/details/:id">
             <Game_Details list={gameElems}></Game_Details>
+          </Route>
+          <Route path="/characters" exact>
+            
+            <Character
+            characters ={charactersElems}
+            ></Character>
           </Route>
         </Switch>
 

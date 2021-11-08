@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ }) => {
         </div>
         <Link text="Home" url="/home" ></Link>
         <Link text="Form" url="/form" ></Link>
-        <Link text="Personajes" url="" ></Link>
+        <Link text="Personajes" url="characters" ></Link>
     </header>;
 }
 

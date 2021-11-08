@@ -1,0 +1,15 @@
+.charactersContainer{
+
+    display: flex;
+    padding:10px;
+}
+.characterCard{
+
+    width:30%;
+    background-color: aqua;
+}
+
+.characterCard__image{
+
+    width:100%;
+}
