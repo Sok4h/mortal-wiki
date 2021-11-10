@@ -1,7 +1,9 @@
 .gameCard{  
 
     width:120px;
-    margin: 10px;  
+    margin: 10px;
+    background: #ebd1d1;
+
 }
 
 .gameCard__image{

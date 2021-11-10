@@ -12,20 +12,19 @@
 .App-link {
   color: #61dafb;
 }
-.gallery{
+.gallery {
   overflow: scroll;
 }
-.popularGames{
-
+.popularGames {
   display: flex;
-  width: fit-content;
+  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.juegosDestacados{
-
+.juegosDestacados {
   margin-left: 10px;
 }
-.gallery::-webkit-scrollbar{
-
+.gallery::-webkit-scrollbar {
   display: none;
-} 
+}

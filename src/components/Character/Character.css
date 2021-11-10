@@ -6,15 +6,20 @@
      justify-content: space-between;
      
 }
-.characterCard{
+/* .characterCard{
 
     width:30%;
     background-color: aqua;
     margin-top:20px;
     min-height:150px;
-}
+} */
 
-.characterCard__image{
+/* .characterCard__image{
 
     width:100%;
+} */
+
+.MuiCard-root{
+
+    background: #cec6c6;
 }
