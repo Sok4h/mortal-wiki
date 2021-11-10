@@ -1,3 +1,4 @@
+import { Button, TextField } from '@mui/material';
 import * as React from 'react';
 import { GameCardProps } from '../GameCard/GameCard'
 import './GameForm.css'
@@ -51,11 +52,11 @@ const GameForm: React.FC<GameFormProps> = ({ onCreate }) => {
 
   return (<form className="GameForm" onSubmit={handleSubmit}>
 
-    <input placeholder="Game name" type="text" onChange={handleNameChange} value={name} />
-    <input placeholder="Image url" type="text" onChange={handleImgChange} value={img} />
-    <input placeholder="Game year" type="number" onChange={handleYearChange} value={year} />
-    <input placeholder="Game description" type="text" onChange={handleDescriptionChange} value={description} />
-    <button>Submit</button>
+<TextField id="outlined-basic" label="Game name" variant="outlined" onChange={handleNameChange} value={name}/>
+<TextField id="outlined-basic" label="Image url" variant="outlined" onChange={handleImgChange} value={img}/>
+<TextField id="outlined-basic" label="Game year"type="number" variant="outlined" onChange={handleYearChange} value={year}/>
+<TextField id="outlined-basic" label="Game description" variant="outlined" onChange={handleDescriptionChange} value={description}/>
+<Button variant="contained">Submit</Button>
 
   </form>);
 }

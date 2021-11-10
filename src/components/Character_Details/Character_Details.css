@@ -1,0 +1,23 @@
+.characterDetail{
+    padding: 0 20px;
+}
+.characterDetail__header{
+
+    margin-top:20px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.characterDetail__header  img{
+
+
+    height:90%;
+}
+
+.characterName{
+
+    margin-top: 10px;
+}

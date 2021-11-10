@@ -1,5 +1,7 @@
+import { Button, TextField } from '@mui/material';
 import * as React from 'react';
-import { CharacterElemObj } from '../../types/CharacterObj';
+import { CharacterElemObj } from '../../types/CharacterElemObj';
+import './CharacterForm.css'
 
 
 
@@ -50,12 +52,13 @@ const CharacterForm: React.FC<CharacterFormProps> = ({ onCreate }) => {
     }
   
     return (<form className="GameForm" onSubmit={handleSubmit}>
-  
-      <input placeholder="Character name" type="text" onChange={handleNameChange} value={name} />
-      <input placeholder="Image url" type="text" onChange={handleImgChange} value={img} />
-      <input placeholder="Realm" type="text" onChange={handleRealmChange} value={realm} />
-      <input placeholder="Biography" type="text" onChange={handleBiographyChange} value={biography} />
-      <button>Submit</button>
+
+      <TextField id="outlined-basic" label="Character name" variant="outlined" onChange={handleNameChange} value={name}/>
+      <TextField id="outlined-basic" label="Image url" variant="outlined" onChange={handleImgChange} value={img}/>
+      <TextField id="outlined-basic" label="Realm" variant="outlined" onChange={handleRealmChange} value={realm}/>
+      <TextField id="outlined-basic" label="Biography" variant="outlined" onChange={handleBiographyChange} value={biography}/>
+      <Button variant="contained" type="submit" >Submit</Button>
+
   
     </form>);
   }
