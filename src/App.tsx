@@ -28,8 +28,13 @@ function App() {
   const history = useHistory();
 
   const [ gameFormType, setGameFormType ] = React.useState<'create' | 'edit'>('create');
-  const [ editId, setEditId ] = React.useState<number|null>(null);
+  const [ characterFormType, setCharacterFormType ] = React.useState<'create' | 'edit'>('create');
+  const [ arenaFormType, setArenaFormType ] = React.useState<'create' | 'edit'>('create');
 
+  const [ editIdGame, setEditIdGame ] = React.useState<number|null>(null);
+  const [ editIdArena, setEditIdArena ] = React.useState<number|null>(null);
+  const [ editIdCharacter, setEditIdCharacter ] = React.useState<number|null>(null);
+  
   const [gameElems, setGameElems] = React.useState<GameElemObj[]>([
 
     {
@@ -93,13 +98,27 @@ function App() {
   }
 
   const handleBeginEdit = (editId: number) => {
-    setEditId(editId);
+    setEditIdGame(editId);
     setGameFormType('edit');
     history.push('/form');
-    console.log(history);
+    
+  }
+  const handleBeginEditArena = (editId: number) => {
+    setEditIdArena(editId);
+    setArenaFormType('edit');
+    history.push('/form');
+    
   }
 
-  const handleEdit = (editId: number, editgamesElems: { name: string, description: string}) => {
+  const handleBeginEditCharacter = (editId: number) => {
+    setEditIdCharacter(editId);
+    setCharacterFormType('edit');
+    history.push('/form');
+   
+  }
+
+
+  const handleEditGame = (editId: number, editgamesElems: { name: string, description: string}) => {
    
     const gameElemsCopy = gameElems.slice();
     const editIndex = gameElems.findIndex((elem) => {
@@ -116,7 +135,50 @@ function App() {
 
     setGameElems(gameElemsCopy);
     setGameFormType('create');
-    setEditId(null);
+    setEditIdGame(null);
+  }
+
+  const handleEditArena = (editId: number, editarenaElems: { name: string, description: string,img: string}) => {
+   
+    const arenaElemsCopy = arenasElems.slice();
+    const editIndex = arenasElems.findIndex((elem) => {
+      if(elem.id === editId) {
+        return true;
+      }
+      return false;
+    });
+
+    arenaElemsCopy[editIndex] = {
+      ...arenasElems[editIndex],
+      ...editarenaElems,
+    }
+
+    setArenas(arenaElemsCopy);
+    setArenaFormType('create');
+    setEditIdArena(null);
+  }
+
+  const handleEditCharacter = (editId: number, editcharacterElems: { name: string, realm: string, img: string, biography: string}) => {
+   
+    const characterElemsCopy = charactersElems.slice();
+    const editIndex = charactersElems.findIndex((elem) => {
+      if(elem.id === editId) {
+        return true;
+      }
+      return false;
+    });
+
+    characterElemsCopy[editIndex] = {
+      ...charactersElems[editIndex],
+      ...editcharacterElems,
+    }
+
+    setCharacters(characterElemsCopy);
+    setCharacterFormType('create');
+    setEditIdCharacter(null);
+   // handleAddCharacterOption({ label: editcharacterElems.name, id: characterElemsCopy[editId].id })
+
+
   }
 
   const initialCharacters: tagOptions[] = [];
@@ -270,11 +332,11 @@ function App() {
           <Switch>
             <Route path="/form">
               <h2> juego</h2>
-              <GameForm onEdit={handleEdit} onCreate={handleCreate} editId={editId} type={gameFormType} gameElems={gameElems} />
+              <GameForm onEdit={handleEditGame} onCreate={handleCreate} editId={editIdGame} type={gameFormType} gameElems={gameElems} />
               <h2> personaje</h2>
-              <CharacterForm onCreate={handleCharacterCreate} />
+              <CharacterForm onEdit={handleEditCharacter} onCreate={handleCharacterCreate} editId={editIdCharacter} type={characterFormType} characterElems={charactersElems} />
               <h2> arena</h2>
-              <ArenasForm onCreate={handleArenasCreate} addTagOption={handleAddTagOption} tagOptions={tagOptions}></ArenasForm>
+              <ArenasForm  type={arenaFormType} onEdit={handleEditArena} editId={editIdArena} onCreate={handleArenasCreate} addTagOption={handleAddTagOption} arenaElems={arenasElems} tagOptions={tagOptions}></ArenasForm>
             </Route>
 
 
@@ -300,10 +362,10 @@ function App() {
             </Route>
 
             <Route path="/character/:id">
-              <Character_Details games={gameElems} list={charactersElems}></Character_Details>
+              <Character_Details onEdit={handleBeginEditCharacter} games={gameElems} list={charactersElems}></Character_Details>
             </Route>
             <Route path="/arena/:id">
-              <ArenaDetails games={gameElems} arenas={arenasElems}></ArenaDetails>
+              <ArenaDetails onEdit={handleBeginEditArena}games={gameElems} arenas={arenasElems}></ArenaDetails>
             </Route>
 
 

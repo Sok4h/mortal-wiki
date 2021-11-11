@@ -8,14 +8,21 @@ interface Character_DetailsProps {
 
   list: CharacterElemObj[];
   games: GameElemObj[];
+  onEdit?: (id: number) => void;
 }
 
-const Character_Details: React.FC<Character_DetailsProps> = ({ list, games }) => {
+const Character_Details: React.FC<Character_DetailsProps> = ({ list, games, onEdit }) => {
 
   const { id: idString } = useParams<{ id: string }>();
   const id = parseFloat(idString);
 
   const gamesArena: GameElemObj[] = [];
+
+  const handleEdit: React.MouseEventHandler<HTMLButtonElement> = () => {
+    if (onEdit) {
+      onEdit(id);
+    }
+  }
   games.map(game => {
 
     game.arenas.map(gameArena => {
@@ -44,6 +51,8 @@ const Character_Details: React.FC<Character_DetailsProps> = ({ list, games }) =>
   const { name, img, realm, biography } = elem;
   return <div className="characterDetail">
 
+    <button onClick={handleEdit}>edit</button>
+
     <div className="characterDetail__header">
 
       <img src={img} alt="" />
@@ -63,7 +72,7 @@ const Character_Details: React.FC<Character_DetailsProps> = ({ list, games }) =>
     </div>
 
     <div className="game-characterContainer">
-      
+
       {gamesArena.map((game) => {
 
         return <GameCard key={game.id} id={game.id} name={game.name} img={game.img}></GameCard>

@@ -9,9 +9,10 @@ interface ArenaDetailsProps {
 
   arenas: ArenaElemObj[];
   games: GameElemObj[];
+  onEdit?: (id: number) => void;
 }
 
-const ArenaDetails: React.FC<ArenaDetailsProps> = ({ arenas, games }) => {
+const ArenaDetails: React.FC<ArenaDetailsProps> = ({ arenas, games,onEdit }) => {
 
 
 
@@ -19,6 +20,11 @@ const ArenaDetails: React.FC<ArenaDetailsProps> = ({ arenas, games }) => {
   const id = parseFloat(idString);
 
   const gamesArena: GameElemObj[] = [];
+  const handleEdit: React.MouseEventHandler<HTMLButtonElement> = () => {
+    if (onEdit) {
+      onEdit(id);
+    }
+  }
   games.map(game => {
 
     game.arenas.map(gameArena => {
@@ -48,6 +54,7 @@ const ArenaDetails: React.FC<ArenaDetailsProps> = ({ arenas, games }) => {
 
   return <div className="characterDetail">
 
+    <button onClick={handleEdit}>edit</button>
     <div className="imgContainer">
 
       <img src={img} className="imgDetail" />
