@@ -25,7 +25,7 @@ const Character_Details: React.FC<Character_DetailsProps> = ({ list, games, onEd
   }
   games.map(game => {
 
-    game.arenas.map(gameArena => {
+    game.characters.map(gameArena => {
       if (gameArena.id === id) {
 
         gamesArena.push(game);
