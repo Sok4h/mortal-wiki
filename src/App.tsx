@@ -79,19 +79,7 @@ function App() {
        en esta ocasión, además de añadir los mejores gráficos de la serie y el gore más
         descarnado en los llamados Fatality, presentará luchadores clásicos y nuevos, 
         más modos de juego y una oferta online que quiere marcar un antes y un después en los eSports.`,
-      characters: [{
-        id: 0,
-        name: 'Liu Kang',
-        realm: "EarthRealm",
-        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Anime_Expo_2014_Lui_Kang_Cosplay.jpg/245px-Anime_Expo_2014_Lui_Kang_Cosplay.jpg'
-
-      }, {
-        id: 1,
-        name: 'Shao Kahn',
-        realm: "EarthRealm",
-        img: 'https://pbs.twimg.com/media/FDSrsXOXIAcuPkk?format=jpg&name=large'
-
-      }],
+      characters: [],
       arenas: []
     }
 
@@ -112,8 +100,6 @@ function App() {
       realm: "EarthRealm",
       img: 'https://pbs.twimg.com/media/FDSrsXOXIAcuPkk?format=jpg&name=large',
       biography: "Prior to the events of the game series, Shao Kahn was a warlord protecting Outworld and an advisor to the realm's ruler, Onaga. Eventually, Shao Kahn poisoned Onaga, claiming his throne and his armies. The Kahn continued to add lesser realms to Outworld, including Edenia; forcing Queen Sindel and Princess Kitana to become his wife and personal assassin respectively. Sindel killed herself to escape the emperor, but he kept her soul in Outworld. One of the backwards dialogues in Deception's Konquest Mode suggests that Shao Kahn is a god-like being like Lucifer and the thunder god Raiden Shao Kahn first appears in Mortal Kombat II as the game's final boss and main antagonist. After the crooked tournament Grandmaster Shang Tsung and his warriors lose to Earthrealm in Mortal Kombat, the Kahn invokes a tournament rematch clause which will allow him to take Earthrealm immediately if he wins. Though he lures Earthre"
-
-
 
     },
 

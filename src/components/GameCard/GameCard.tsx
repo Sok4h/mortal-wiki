@@ -48,12 +48,7 @@ const GameCard: React.FC<GameCardProps> = ({ name, img, id }) => {
 
 
 
-    //  <div className="gameCard" onClick={handleView} >
-
-    //     <img className="gameCard__image" src={img} alt="" />
-    //     <p className="gameCard__name">{name}</p>
-
-    // </div>
+   
 
     ;
 }

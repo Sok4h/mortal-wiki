@@ -71,7 +71,9 @@ const Character_Details: React.FC<Character_DetailsProps> = ({ list, games, onEd
 
     </div>
   
-    <div className="game-characterContainer">
+      <div className="game-characterContainer">
+
+      <h2>Apariciones</h2>
 
       {gamesArena.map((game) => {
 

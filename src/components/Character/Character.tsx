@@ -38,7 +38,7 @@ const Character: React.FC<CharacterProps> = ({ characters }) => {
               {char.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {char.biography}
+              {/* {char.biography} */}
             </Typography>
           </CardContent>
         </CardActionArea>
