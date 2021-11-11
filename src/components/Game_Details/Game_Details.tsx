@@ -17,14 +17,15 @@ interface Game_DetailsProps {
     onEdit?: (id: number) => void;
 }
 
-const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, arenasOptions, onAddCharacters, onAddArenas,onEdit }) => {
+const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, arenasOptions, onAddCharacters, onAddArenas, onEdit }) => {
 
     const [charactersState, setCharactersState] = React.useState<number[]>([]);
     const [arenasState, setArenasState] = React.useState<number[]>([]);
 
     const handleTagsCharacter = (event: React.SyntheticEvent<Element, Event>, values: (tagOptions)[]) => {
+
         const transformed = values.map((value) => {
-            // si el valor es un string, quiere decir que el usurio está agregando una nueva opción
+
 
             return value.id;
         });
@@ -123,14 +124,12 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
             disableClearable
             style={{
                 width: "100%",
-
             }}
             id="combo-box-demo"
             options={characterOptions}
             getOptionLabel={(option) => option.label}
             renderInput={(params) => <TextField {...params} label="characters" placeholder="Add a tag" />}
             onChange={handleTagsCharacter}
-            //value={tags as any}
             isOptionEqualToValue={(option, value) => {
                 return option.label === value.label;
             }}

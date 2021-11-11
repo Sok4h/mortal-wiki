@@ -27,6 +27,7 @@ const GameCard: React.FC<GameCardProps> = ({ name, img, id }) => {
     <CardActionArea>
       <CardMedia
         component="img"
+        height="150"
         image={img}
         alt="green iguana"
       />

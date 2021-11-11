@@ -20,28 +20,66 @@ import { ThemeProvider } from '@emotion/react';
 import { theme } from './utils/theme';
 import { tagOptions } from './types/TagOptions';
 import ArenaDetails from './components/ArenaDetails/ArenaDetails';
+import { Bar } from 'react-chartjs-2';
+import { getChartData } from './utils/getChartData';
 
 
 
-function App() {  
-  
+const options = {
+  indexAxis: 'y',
+  // Elements options apply to all of the options unless overridden in a dataset
+  // In this case, we are setting the border of each horizontal bar to be 2px wide
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'right',
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Horizontal Bar Chart',
+    },
+  },
+};
+
+function App() {
+
   const history = useHistory();
 
-  const [ gameFormType, setGameFormType ] = React.useState<'create' | 'edit'>('create');
-  const [ characterFormType, setCharacterFormType ] = React.useState<'create' | 'edit'>('create');
-  const [ arenaFormType, setArenaFormType ] = React.useState<'create' | 'edit'>('create');
+  const [gameFormType, setGameFormType] = React.useState<'create' | 'edit'>('create');
+  const [characterFormType, setCharacterFormType] = React.useState<'create' | 'edit'>('create');
+  const [arenaFormType, setArenaFormType] = React.useState<'create' | 'edit'>('create');
 
-  const [ editIdGame, setEditIdGame ] = React.useState<number|null>(null);
-  const [ editIdArena, setEditIdArena ] = React.useState<number|null>(null);
-  const [ editIdCharacter, setEditIdCharacter ] = React.useState<number|null>(null);
-  
+  const [editIdGame, setEditIdGame] = React.useState<number | null>(null);
+  const [editIdArena, setEditIdArena] = React.useState<number | null>(null);
+  const [editIdCharacter, setEditIdCharacter] = React.useState<number | null>(null);
+
   const [gameElems, setGameElems] = React.useState<GameElemObj[]>([
 
     {
       id: 1,
       name: "Mortal Kombat 11",
       year: 2011,
-      img: "https://todoaplazo.com/images/products/54a4d1e3-424d-47d2-9ce0-ebf8213a3017-2.png",
+      img: "https://f3.trucoteca.com/fotos/7589/med/mortal-kombat-shaolin-monks-1.jpg",
+      description: `Mortal Kombat 11 es la nueva entrega de la violenta y salvaje 
+      saga de lucha de NetherRealm Studios para consolas y PC. Se trata de la undécima 
+      secuela de una serie de títulos de combate y peleas de marcada estructura 2D, que
+       en esta ocasión, además de añadir los mejores gráficos de la serie y el gore más
+        descarnado en los llamados Fatality, presentará luchadores clásicos y nuevos, 
+        más modos de juego y una oferta online que quiere marcar un antes y un después en los eSports.`,
+      characters: [],
+      arenas: []
+    },
+
+    {
+      id: 2,
+      name: "Mortal deadly Aliance",
+      year: 2006,
+      img: "https://www.ecured.cu/images/1/1e/Mortal_kombat_deadly_alliance.jpg",
       description: `Mortal Kombat 11 es la nueva entrega de la violenta y salvaje 
       saga de lucha de NetherRealm Studios para consolas y PC. Se trata de la undécima 
       secuela de una serie de títulos de combate y peleas de marcada estructura 2D, que
@@ -59,6 +97,13 @@ function App() {
       name: 'Liu Kang',
       realm: "EarthRealm",
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Anime_Expo_2014_Lui_Kang_Cosplay.jpg/245px-Anime_Expo_2014_Lui_Kang_Cosplay.jpg'
+
+    },
+    {
+      id: 1,
+      name: 'Shao Kahn',
+      realm: "EarthRealm",
+      img: 'https://pbs.twimg.com/media/FDSrsXOXIAcuPkk?format=jpg&name=large'
 
     }
 
@@ -101,28 +146,28 @@ function App() {
     setEditIdGame(editId);
     setGameFormType('edit');
     history.push('/form');
-    
+
   }
   const handleBeginEditArena = (editId: number) => {
     setEditIdArena(editId);
     setArenaFormType('edit');
     history.push('/form');
-    
+
   }
 
   const handleBeginEditCharacter = (editId: number) => {
     setEditIdCharacter(editId);
     setCharacterFormType('edit');
     history.push('/form');
-   
+
   }
 
 
-  const handleEditGame = (editId: number, editgamesElems: { name: string, description: string}) => {
-   
+  const handleEditGame = (editId: number, editgamesElems: { name: string, description: string }) => {
+
     const gameElemsCopy = gameElems.slice();
     const editIndex = gameElems.findIndex((elem) => {
-      if(elem.id === editId) {
+      if (elem.id === editId) {
         return true;
       }
       return false;
@@ -138,11 +183,11 @@ function App() {
     setEditIdGame(null);
   }
 
-  const handleEditArena = (editId: number, editarenaElems: { name: string, description: string,img: string}) => {
-   
+  const handleEditArena = (editId: number, editarenaElems: { name: string, description: string, img: string }) => {
+
     const arenaElemsCopy = arenasElems.slice();
     const editIndex = arenasElems.findIndex((elem) => {
-      if(elem.id === editId) {
+      if (elem.id === editId) {
         return true;
       }
       return false;
@@ -158,11 +203,11 @@ function App() {
     setEditIdArena(null);
   }
 
-  const handleEditCharacter = (editId: number, editcharacterElems: { name: string, realm: string, img: string, biography: string}) => {
-   
+  const handleEditCharacter = (editId: number, editcharacterElems: { name: string, realm: string, img: string, biography: string }) => {
+
     const characterElemsCopy = charactersElems.slice();
     const editIndex = charactersElems.findIndex((elem) => {
-      if(elem.id === editId) {
+      if (elem.id === editId) {
         return true;
       }
       return false;
@@ -176,8 +221,7 @@ function App() {
     setCharacters(characterElemsCopy);
     setCharacterFormType('create');
     setEditIdCharacter(null);
-   // handleAddCharacterOption({ label: editcharacterElems.name, id: characterElemsCopy[editId].id })
-
+  
 
   }
 
@@ -255,7 +299,7 @@ function App() {
 
     handleAddArenaOption({ label: newArenasElem.name, id: newArenasElem.id })
   }
-
+  const data = getChartData(charactersElems,gameElems);
   const addArenas = (gameId: number, arenasId: number[]) => {
 
     const arrayCopy = gameElems.slice();
@@ -299,6 +343,7 @@ function App() {
     });
 
     const charactersObj: CharacterElemObj[] = [];
+    
     charactersId.map((id) => {
 
       charactersElems.map((char) => {
@@ -325,67 +370,89 @@ function App() {
   return (
 
     <ThemeProvider theme={theme}>
-      
-        <div className="App">
 
-          <Header></Header>
-          <Switch>
-            <Route path="/form">
-              <h2> juego</h2>
-              <GameForm onEdit={handleEditGame} onCreate={handleCreate} editId={editIdGame} type={gameFormType} gameElems={gameElems} />
-              <h2> personaje</h2>
-              <CharacterForm onEdit={handleEditCharacter} onCreate={handleCharacterCreate} editId={editIdCharacter} type={characterFormType} characterElems={charactersElems} />
-              <h2> arena</h2>
-              <ArenasForm  type={arenaFormType} onEdit={handleEditArena} editId={editIdArena} onCreate={handleArenasCreate} addTagOption={handleAddTagOption} arenaElems={arenasElems} tagOptions={tagOptions}></ArenasForm>
-            </Route>
+      <div className="App">
 
-
-            <Route path="/home">
-
-              <Banner name="Mk Deception" img="https://f3.trucoteca.com/fotos/6746/mortal-komat-deception-11.jpg"></Banner>
-
-              <h3 className="juegosDestacados">Juegos Destacados</h3>
-              <article className="gallery">
-
-                <section className="popularGames">
-
-                  {gameElems.map((elem) => {
-
-                    return <GameCard key={elem.id} id={elem.id} name={elem.name} img={elem.img} />;
-                  })}
-                </section>
-              </article>
-            </Route>
-
-            <Route path="/details/:id">
-              <Game_Details onEdit={handleBeginEdit} onAddCharacters={addCharacters} onAddArenas={addArenas} list={gameElems} characterOptions={characterOptions} arenasOptions={arenasOptions}></Game_Details>
-            </Route>
-
-            <Route path="/character/:id">
-              <Character_Details onEdit={handleBeginEditCharacter} games={gameElems} list={charactersElems}></Character_Details>
-            </Route>
-            <Route path="/arena/:id">
-              <ArenaDetails onEdit={handleBeginEditArena}games={gameElems} arenas={arenasElems}></ArenaDetails>
-            </Route>
+        <Header></Header>
+        <Switch>
+          <Route path="/form">
+            <h2> juego</h2>
+            <GameForm onEdit={handleEditGame} onCreate={handleCreate} editId={editIdGame} type={gameFormType} gameElems={gameElems} />
+            <h2> personaje</h2>
+            <CharacterForm onEdit={handleEditCharacter} onCreate={handleCharacterCreate} editId={editIdCharacter} type={characterFormType} characterElems={charactersElems} />
+            <h2> arena</h2>
+            <ArenasForm type={arenaFormType} onEdit={handleEditArena} editId={editIdArena} onCreate={handleArenasCreate} addTagOption={handleAddTagOption} arenaElems={arenasElems} tagOptions={tagOptions}></ArenasForm>
+          </Route>
 
 
+          <Route path="/home">
 
-            <Route path="/characters" exact>
+            <Banner name="Mk Deception" img="https://f3.trucoteca.com/fotos/6746/mortal-komat-deception-11.jpg"></Banner>
 
-              <Character
-                characters={charactersElems}
-              ></Character>
-            </Route>
+            <Bar data={data} options={{
 
-            <Route path="/arenas" exact>
-              <Arenas arenas={arenasElems}></Arenas>
+              indexAxis: 'y',
+              // Elements options apply to all of the options unless overridden in a dataset
+              // In this case, we are setting the border of each horizontal bar to be 2px wide
+              elements: {
+                bar: {
+                  borderWidth: 2,
+                },
+              },
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'right',
+                },
+                title: {
+                  display: true,
+                  text: 'personajes con mas apariciones',
+                },
+              },
+            }} />
 
-            </Route>
-          </Switch>
+            <h3 className="juegosDestacados">Juegos Destacados</h3>
+            <article className="gallery">
+
+              <section className="popularGames">
+
+                {gameElems.map((elem) => {
+
+                  return <GameCard key={elem.id} id={elem.id} name={elem.name} img={elem.img} />;
+                })}
+              </section>
+            </article>
+          </Route>
+
+          <Route path="/details/:id">
+            <Game_Details onEdit={handleBeginEdit} onAddCharacters={addCharacters} onAddArenas={addArenas} list={gameElems} characterOptions={characterOptions} arenasOptions={arenasOptions}></Game_Details>
+          </Route>
+
+          <Route path="/character/:id">
+            <Character_Details onEdit={handleBeginEditCharacter} games={gameElems} list={charactersElems}></Character_Details>
+          </Route>
+          <Route path="/arena/:id">
+            <ArenaDetails onEdit={handleBeginEditArena} games={gameElems} arenas={arenasElems}></ArenaDetails>
+          </Route>
 
 
-        </div>
-      
+
+          <Route path="/characters" exact>
+
+            <Character
+              characters={charactersElems}
+            ></Character>
+          </Route>
+
+          <Route path="/arenas" exact>
+            <Arenas arenas={arenasElems}></Arenas>
+
+          </Route>
+        </Switch>
+
+
+      </div>
+
     </ThemeProvider>
   );
 
