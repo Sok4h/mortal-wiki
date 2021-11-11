@@ -11,7 +11,7 @@ const Banner: React.FC<BannerProps> = ({name,img }) => {
   return <div className="bannerContainer">
 
       <img src={img} className="bannerImage" />
-      <p className="bannerTitle">{name}</p>
+      
   </div>;
 }
 

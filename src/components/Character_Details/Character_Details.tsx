@@ -70,7 +70,7 @@ const Character_Details: React.FC<Character_DetailsProps> = ({ list, games, onEd
       <p className="biography">{biography}</p>
 
     </div>
-
+  
     <div className="game-characterContainer">
 
       {gamesArena.map((game) => {

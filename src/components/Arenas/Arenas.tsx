@@ -19,25 +19,20 @@ const Character: React.FC<ArenasProps> = ({ arenas }) => {
     history.push(`/arena/${id}`);
   }
 
-  return (<div className="charactersContainer">
+  return (<div className="ArenasContainer">
 
 
 
     {arenas.map((arena) => {
-      //<div key={arena.id} className="characterCard" onClick={handleView(arena.id)}>
-      //   <img className="characterCard__image" src={arena.img} alt="" />
-      //   <p className="characterCard__name">{arena.name}</p>
+     
 
 
-      // </div>
-
-
-      return <Card key={arena.id}sx={{ maxWidth: 150 }} onClick={handleView(arena.id)} >
+      return <Card key={arena.id}sx={{ maxWidth: 180 }} onClick={handleView(arena.id)} >
         <CardActionArea>
           <CardMedia
             component="img"
             image={arena.img}
-            alt="green iguana"
+            alt=""
           />
           <CardContent
 

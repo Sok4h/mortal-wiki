@@ -15,9 +15,10 @@ interface Game_DetailsProps {
     onAddCharacters: (gameId: number, charactersId: number[]) => void;
     onAddArenas: (gameId: number, arenasId: number[]) => void;
     onEdit?: (id: number) => void;
+    onDelete?: (id: number) => void;
 }
 
-const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, arenasOptions, onAddCharacters, onAddArenas, onEdit }) => {
+const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, arenasOptions, onAddCharacters, onAddArenas, onEdit , onDelete}) => {
 
     const [charactersState, setCharactersState] = React.useState<number[]>([]);
     const [arenasState, setArenasState] = React.useState<number[]>([]);
@@ -56,6 +57,12 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
         }
     }
 
+    const handleDelete: React.MouseEventHandler<HTMLButtonElement> = () => {
+        if(onDelete) {
+          onDelete(id);
+        }
+      }
+
 
     const { id: idString } = useParams<{ id: string }>();
     const id = parseFloat(idString);
@@ -78,6 +85,7 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
     return <div className="gameDetail">
 
         <button onClick={handleEdit}>edit</button>
+        <button onClick={handleDelete}>delete</button>
 
         <div className="imgContainer">
 
@@ -134,6 +142,7 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
                 return option.label === value.label;
             }}
         />
+
         <Button variant="contained" onClick={handleBtnAddCharacters}>Submit</Button>
 
         {/* formulario arenas */}

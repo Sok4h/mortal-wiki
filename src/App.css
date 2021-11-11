@@ -21,14 +21,12 @@ body{
 }
 .popularGames {
   display: flex;
+  width:100%;
   padding: 10px;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  overflow-x: scroll;
+  gap: 1rem;
 }
 
 .juegosDestacados {
   margin-left: 10px;
-}
-.gallery::-webkit-scrollbar {
-  display: none;
 }

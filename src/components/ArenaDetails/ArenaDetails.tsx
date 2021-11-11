@@ -55,7 +55,7 @@ const ArenaDetails: React.FC<ArenaDetailsProps> = ({ arenas, games,onEdit }) => 
   return <div className="characterDetail">
 
     <button onClick={handleEdit}>edit</button>
-    <div className="imgContainer">
+    <div className="imgContainerArena">
 
       <img src={img} className="imgDetail" />
       <h3 className="title">{name}</h3>

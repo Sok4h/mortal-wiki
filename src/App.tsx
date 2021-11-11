@@ -25,27 +25,6 @@ import { getChartData } from './utils/getChartData';
 
 
 
-const options = {
-  indexAxis: 'y',
-  // Elements options apply to all of the options unless overridden in a dataset
-  // In this case, we are setting the border of each horizontal bar to be 2px wide
-  elements: {
-    bar: {
-      borderWidth: 2,
-    },
-  },
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'right',
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Horizontal Bar Chart',
-    },
-  },
-};
-
 function App() {
 
   const history = useHistory();
@@ -88,7 +67,35 @@ function App() {
         más modos de juego y una oferta online que quiere marcar un antes y un después en los eSports.`,
       characters: [],
       arenas: []
+    },
+    {
+      id: 3,
+      name: "Mortal Kombat Armageddon",
+      year: 2005,
+      img: "https://m.media-amazon.com/images/I/513Y2Biv88L._SY445_.jpg",
+      description: `Mortal Kombat 11 es la nueva entrega de la violenta y salvaje 
+      saga de lucha de NetherRealm Studios para consolas y PC. Se trata de la undécima 
+      secuela de una serie de títulos de combate y peleas de marcada estructura 2D, que
+       en esta ocasión, además de añadir los mejores gráficos de la serie y el gore más
+        descarnado en los llamados Fatality, presentará luchadores clásicos y nuevos, 
+        más modos de juego y una oferta online que quiere marcar un antes y un después en los eSports.`,
+      characters: [{
+        id: 0,
+        name: 'Liu Kang',
+        realm: "EarthRealm",
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Anime_Expo_2014_Lui_Kang_Cosplay.jpg/245px-Anime_Expo_2014_Lui_Kang_Cosplay.jpg'
+
+      }, {
+        id: 1,
+        name: 'Shao Kahn',
+        realm: "EarthRealm",
+        img: 'https://pbs.twimg.com/media/FDSrsXOXIAcuPkk?format=jpg&name=large'
+
+      }],
+      arenas: []
     }
+
+
   ]);
 
   const [charactersElems, setCharacters] = React.useState<CharacterElemObj[]>([
@@ -103,9 +110,26 @@ function App() {
       id: 1,
       name: 'Shao Kahn',
       realm: "EarthRealm",
-      img: 'https://pbs.twimg.com/media/FDSrsXOXIAcuPkk?format=jpg&name=large'
+      img: 'https://pbs.twimg.com/media/FDSrsXOXIAcuPkk?format=jpg&name=large',
+      biography: "Prior to the events of the game series, Shao Kahn was a warlord protecting Outworld and an advisor to the realm's ruler, Onaga. Eventually, Shao Kahn poisoned Onaga, claiming his throne and his armies. The Kahn continued to add lesser realms to Outworld, including Edenia; forcing Queen Sindel and Princess Kitana to become his wife and personal assassin respectively. Sindel killed herself to escape the emperor, but he kept her soul in Outworld. One of the backwards dialogues in Deception's Konquest Mode suggests that Shao Kahn is a god-like being like Lucifer and the thunder god Raiden Shao Kahn first appears in Mortal Kombat II as the game's final boss and main antagonist. After the crooked tournament Grandmaster Shang Tsung and his warriors lose to Earthrealm in Mortal Kombat, the Kahn invokes a tournament rematch clause which will allow him to take Earthrealm immediately if he wins. Though he lures Earthre"
 
-    }
+
+
+    },
+
+    {
+      id: 2,
+      name: 'Sub Zero',
+      realm: "EarthRealm",
+      img: 'https://www.ecured.cu/images/0/00/Sub-Zero.jpg',
+      biography: `Kuai Liang más conocido como Sub-Zero y anteriormente como Tundra es un personaje ficticio de la saga de videojuegos Mortal Kombat. Sub-Zero es el personaje más popular en la serie de Mortal Kombat junto con Scorpion.2​
+
+      El personaje es un luchador formidable que posee la capacidad innata de controlar el hielo en muchas formas. En su primera aparición en Mortal Kombat II, se reveló que el Sub-Zero original había muerto durante los eventos del primer juego (de la mano de Scorpion) y fue reemplazado por su hermano. En los juegos posteriores, el hermano menor permaneció como Sub-Zero, mientras que el hermano mayor se convirtió en Noob Saibot. El rasgo más definitorio del personaje es su feroz rivalidad con su némesis Scorpion, la cual se terminó en Mortal Kombat X, cuando hicieron una tregua y se convirtieron en aliados.
+      
+      Uno de los pilares de la serie, Sub-Zero es uno de los tres únicos personajes que han aparecido en todos los principales juegos de Mortal Kombat (de una forma u otra).`
+
+    },
+
 
   ]);
 
@@ -114,11 +138,25 @@ function App() {
       id: 0,
       name: 'The pit',
       description: "EarthRealm",
+      img: 'https://p4.wallpaperbetter.com/wallpaper/2/199/777/abstrsct-3840-x-2160-abstract-stage-wallpaper-preview.jpg',
+      conceptArt: ["https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg",
+        "https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg",
+        "https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg",
+        "https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg"
+      ]
+
+
+
+    },
+    {
+      id: 1,
+      name: 'Living Forest',
+      description: " es un escenario disponible desde Mortal Kombat II. Como el nombre implícito sugiere, el lugar es descrito como un obscuro bosque con árboles vivos que tienden a rugir y a hacer muecas de malestar o intimidación. De acuerdo a ciertos pasajes del argumento del modo Konquest de Mortal Kombat Deception, el Bosque Viviente se encontraría próximo a la cuidad de Lei Chen, en Outworld, y en Mortal Kombat Shaolin Monks se muestra que una de sus ubicaciones es Reptile's Lair.",
       img: 'https://static.wikia.nocookie.net/mkwikia/images/7/72/Shao_Kahn%27s_Coliseum.jpg',
-      conceptArt: ["https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png",
-        "https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png",
-        "https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png",
-        "https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png"
+      conceptArt: ["https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg",
+        "https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg",
+        "https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg",
+        "https://www.giantbomb.com/a/uploads/original/0/7661/483925-pyramidofargus_concept.jpg"
       ]
 
     }
@@ -221,7 +259,7 @@ function App() {
     setCharacters(characterElemsCopy);
     setCharacterFormType('create');
     setEditIdCharacter(null);
-  
+
 
   }
 
@@ -272,9 +310,7 @@ function App() {
   }
 
   const [tagOptions, setTagOptions] = React.useState<TagOption[]>([
-    // { label: "test 1" },
-    // { label: "test 2" },
-    // { label: "Animals" },
+
   ]);
 
   const handleAddTagOption = (newTagOption: TagOption) => {
@@ -299,7 +335,7 @@ function App() {
 
     handleAddArenaOption({ label: newArenasElem.name, id: newArenasElem.id })
   }
-  const data = getChartData(charactersElems,gameElems);
+  const data = getChartData(charactersElems, gameElems);
   const addArenas = (gameId: number, arenasId: number[]) => {
 
     const arrayCopy = gameElems.slice();
@@ -332,6 +368,19 @@ function App() {
 
 
   }
+
+  const handleDelete = (deleteId: number) => {
+
+    const gameElemsCopy = gameElems.filter((elem) => {
+      if (elem.id === deleteId) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    setGameElems(gameElemsCopy);
+    history.push('/home');
+  }
   const addCharacters = (gameId: number, charactersId: number[]) => {
 
     const arrayCopy = gameElems.slice();
@@ -342,8 +391,21 @@ function App() {
       return false;
     });
 
-    const charactersObj: CharacterElemObj[] = [];
-    
+    const charactersObj: CharacterElemObj[] = gameElems[editIndex].characters;
+
+    let charExist = false;
+    gameElems[editIndex].characters.map(character => {
+
+      charactersId.map(id => {
+
+        if (character.id === id) {
+
+          charExist = true;
+        }
+
+      });
+
+    })
     charactersId.map((id) => {
 
       charactersElems.map((char) => {
@@ -425,7 +487,7 @@ function App() {
           </Route>
 
           <Route path="/details/:id">
-            <Game_Details onEdit={handleBeginEdit} onAddCharacters={addCharacters} onAddArenas={addArenas} list={gameElems} characterOptions={characterOptions} arenasOptions={arenasOptions}></Game_Details>
+            <Game_Details onDelete={handleDelete} onEdit={handleBeginEdit} onAddCharacters={addCharacters} onAddArenas={addArenas} list={gameElems} characterOptions={characterOptions} arenasOptions={arenasOptions}></Game_Details>
           </Route>
 
           <Route path="/character/:id">

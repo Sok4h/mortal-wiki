@@ -25,13 +25,13 @@ const Character: React.FC<CharacterProps> = ({ characters }) => {
 
     {characters.map((char) => {
 
-      return <Card  key={char.id} sx={{ maxWidth: 345 }  } onClick={handleView(char.id)}>
+      return <Card  key={char.id} sx={{ width: 150,minHeight:200 }  } onClick={handleView(char.id)}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="150"
             image={char.img}
-            alt="green iguana"
+            alt=""
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
