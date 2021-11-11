@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/mortal-wiki/static/css/main.62a9677f.chunk.css",
-    "main.js": "/mortal-wiki/static/js/main.5d9a557e.chunk.js",
-    "main.js.map": "/mortal-wiki/static/js/main.5d9a557e.chunk.js.map",
-    "runtime-main.js": "/mortal-wiki/static/js/runtime-main.0f0d8912.js",
-    "runtime-main.js.map": "/mortal-wiki/static/js/runtime-main.0f0d8912.js.map",
-    "static/js/2.63b528e6.chunk.js": "/mortal-wiki/static/js/2.63b528e6.chunk.js",
-    "static/js/2.63b528e6.chunk.js.map": "/mortal-wiki/static/js/2.63b528e6.chunk.js.map",
-    "static/js/3.40a965e3.chunk.js": "/mortal-wiki/static/js/3.40a965e3.chunk.js",
-    "static/js/3.40a965e3.chunk.js.map": "/mortal-wiki/static/js/3.40a965e3.chunk.js.map",
+    "main.css": "/mortal-wiki/static/css/main.80137aca.chunk.css",
+    "main.js": "/mortal-wiki/static/js/main.38c103a5.chunk.js",
+    "main.js.map": "/mortal-wiki/static/js/main.38c103a5.chunk.js.map",
+    "runtime-main.js": "/mortal-wiki/static/js/runtime-main.988b2956.js",
+    "runtime-main.js.map": "/mortal-wiki/static/js/runtime-main.988b2956.js.map",
+    "static/js/2.fb26beed.chunk.js": "/mortal-wiki/static/js/2.fb26beed.chunk.js",
+    "static/js/2.fb26beed.chunk.js.map": "/mortal-wiki/static/js/2.fb26beed.chunk.js.map",
+    "static/js/3.fd86c681.chunk.js": "/mortal-wiki/static/js/3.fd86c681.chunk.js",
+    "static/js/3.fd86c681.chunk.js.map": "/mortal-wiki/static/js/3.fd86c681.chunk.js.map",
     "index.html": "/mortal-wiki/index.html",
-    "static/css/main.62a9677f.chunk.css.map": "/mortal-wiki/static/css/main.62a9677f.chunk.css.map",
-    "static/js/2.63b528e6.chunk.js.LICENSE.txt": "/mortal-wiki/static/js/2.63b528e6.chunk.js.LICENSE.txt",
+    "static/css/main.80137aca.chunk.css.map": "/mortal-wiki/static/css/main.80137aca.chunk.css.map",
+    "static/js/2.fb26beed.chunk.js.LICENSE.txt": "/mortal-wiki/static/js/2.fb26beed.chunk.js.LICENSE.txt",
     "static/media/logomk.4640112d.svg": "/mortal-wiki/static/media/logomk.4640112d.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0f0d8912.js",
-    "static/js/2.63b528e6.chunk.js",
-    "static/css/main.62a9677f.chunk.css",
-    "static/js/main.5d9a557e.chunk.js"
+    "static/js/runtime-main.988b2956.js",
+    "static/js/2.fb26beed.chunk.js",
+    "static/css/main.80137aca.chunk.css",
+    "static/js/main.38c103a5.chunk.js"
   ]
 }
