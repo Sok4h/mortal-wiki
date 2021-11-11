@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mortal-wiki/static/css/main.80137aca.chunk.css",
-    "main.js": "/mortal-wiki/static/js/main.38c103a5.chunk.js",
-    "main.js.map": "/mortal-wiki/static/js/main.38c103a5.chunk.js.map",
+    "main.js": "/mortal-wiki/static/js/main.c6a1b66c.chunk.js",
+    "main.js.map": "/mortal-wiki/static/js/main.c6a1b66c.chunk.js.map",
     "runtime-main.js": "/mortal-wiki/static/js/runtime-main.988b2956.js",
     "runtime-main.js.map": "/mortal-wiki/static/js/runtime-main.988b2956.js.map",
     "static/js/2.fb26beed.chunk.js": "/mortal-wiki/static/js/2.fb26beed.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.988b2956.js",
     "static/js/2.fb26beed.chunk.js",
     "static/css/main.80137aca.chunk.css",
-    "static/js/main.38c103a5.chunk.js"
+    "static/js/main.c6a1b66c.chunk.js"
   ]
 }
