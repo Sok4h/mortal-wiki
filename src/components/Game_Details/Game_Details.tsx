@@ -14,9 +14,10 @@ interface Game_DetailsProps {
     arenasOptions: tagOptions[];
     onAddCharacters: (gameId: number, charactersId: number[]) => void;
     onAddArenas: (gameId: number, arenasId: number[]) => void;
+    onEdit?: (id: number) => void;
 }
 
-const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, arenasOptions, onAddCharacters, onAddArenas }) => {
+const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, arenasOptions, onAddCharacters, onAddArenas,onEdit }) => {
 
     const [charactersState, setCharactersState] = React.useState<number[]>([]);
     const [arenasState, setArenasState] = React.useState<number[]>([]);
@@ -48,7 +49,11 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
 
         onAddArenas(id, arenasState)
     }
-
+    const handleEdit: React.MouseEventHandler<HTMLButtonElement> = () => {
+        if (onEdit) {
+            onEdit(id);
+        }
+    }
 
 
     const { id: idString } = useParams<{ id: string }>();
@@ -67,22 +72,25 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
         return <Redirect to="/404" />;
     }
 
-    const { name, img, description, characters, arenas } = elem;
+    const { name, img, year, description, characters, arenas } = elem;
 
-    return <div>
+    return <div className="gameDetail">
+
+        <button onClick={handleEdit}>edit</button>
 
         <div className="imgContainer">
 
             <img src={img} className="imgDetail" />
             <h3 className="title">{name}</h3>
+            <p className="year">{year}</p>
         </div>
 
-        <h4 className="">Description</h4>
+        <h4 className="subtitle">Description</h4>
 
         <p className="description">{description}</p>
 
         <section>
-            <h3>Personajes</h3>
+            <h3 className="subtitle">Personajes</h3>
 
 
             <div className="characterContainer">
@@ -98,7 +106,7 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
 
         <section>
 
-            <h3>Escenarios</h3>
+            <h3 className="subtitle">Escenarios</h3>
 
             <div className="scenaryContainer">
 
@@ -131,7 +139,7 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, are
 
         {/* formulario arenas */}
 
-            <h2>Arenas</h2>
+        <h2 className="subtitle">Arenas</h2>
         <Autocomplete
             multiple
 

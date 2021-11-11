@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import GameCard, { GameCardProps } from './components/GameCard/GameCard';
 import GameForm from './components/GameForm/GameForm';
 import Banner from './components/Banner/Banner';
-import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
+import { HashRouter, Route, Redirect, Switch, useHistory } from 'react-router-dom'
 import Game_Details from './components/Game_Details/Game_Details';
 import { GameElemObj } from './types/GameElemObj';
 import Character from './components/Character/Character';
@@ -23,14 +23,20 @@ import ArenaDetails from './components/ArenaDetails/ArenaDetails';
 
 
 
-function App() {
+function App() {  
+  
+  const history = useHistory();
+
+  const [ gameFormType, setGameFormType ] = React.useState<'create' | 'edit'>('create');
+  const [ editId, setEditId ] = React.useState<number|null>(null);
 
   const [gameElems, setGameElems] = React.useState<GameElemObj[]>([
 
     {
       id: 1,
       name: "Mortal Kombat 11",
-      img: "https://playtecgames.com/wp-content/uploads/2020/05/mortal-ps4_2.jpg",
+      year: 2011,
+      img: "https://todoaplazo.com/images/products/54a4d1e3-424d-47d2-9ce0-ebf8213a3017-2.png",
       description: `Mortal Kombat 11 es la nueva entrega de la violenta y salvaje 
       saga de lucha de NetherRealm Studios para consolas y PC. Se trata de la undécima 
       secuela de una serie de títulos de combate y peleas de marcada estructura 2D, que
@@ -84,6 +90,33 @@ function App() {
 
 
     setGameElems(arrayCopy);
+  }
+
+  const handleBeginEdit = (editId: number) => {
+    setEditId(editId);
+    setGameFormType('edit');
+    history.push('/form');
+    console.log(history);
+  }
+
+  const handleEdit = (editId: number, editgamesElems: { name: string, description: string}) => {
+   
+    const gameElemsCopy = gameElems.slice();
+    const editIndex = gameElems.findIndex((elem) => {
+      if(elem.id === editId) {
+        return true;
+      }
+      return false;
+    });
+
+    gameElemsCopy[editIndex] = {
+      ...gameElems[editIndex],
+      ...editgamesElems,
+    }
+
+    setGameElems(gameElemsCopy);
+    setGameFormType('create');
+    setEditId(null);
   }
 
   const initialCharacters: tagOptions[] = [];
@@ -230,14 +263,14 @@ function App() {
   return (
 
     <ThemeProvider theme={theme}>
-      <HashRouter>
+      
         <div className="App">
 
           <Header></Header>
           <Switch>
             <Route path="/form">
               <h2> juego</h2>
-              <GameForm onCreate={handleCreate} />
+              <GameForm onEdit={handleEdit} onCreate={handleCreate} editId={editId} type={gameFormType} gameElems={gameElems} />
               <h2> personaje</h2>
               <CharacterForm onCreate={handleCharacterCreate} />
               <h2> arena</h2>
@@ -256,7 +289,6 @@ function App() {
 
                   {gameElems.map((elem) => {
 
-
                     return <GameCard key={elem.id} id={elem.id} name={elem.name} img={elem.img} />;
                   })}
                 </section>
@@ -264,7 +296,7 @@ function App() {
             </Route>
 
             <Route path="/details/:id">
-              <Game_Details onAddCharacters={addCharacters} onAddArenas={addArenas} list={gameElems} characterOptions={characterOptions} arenasOptions={arenasOptions}></Game_Details>
+              <Game_Details onEdit={handleBeginEdit} onAddCharacters={addCharacters} onAddArenas={addArenas} list={gameElems} characterOptions={characterOptions} arenasOptions={arenasOptions}></Game_Details>
             </Route>
 
             <Route path="/character/:id">
@@ -291,7 +323,7 @@ function App() {
 
 
         </div>
-      </HashRouter>
+      
     </ThemeProvider>
   );
 

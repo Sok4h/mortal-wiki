@@ -3,7 +3,6 @@ import { color } from '@mui/system';
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import { CharacterElemObj } from '../../types/CharacterElemObj';
-import { Link } from '../Link/Link';
 import './Character.css'
 
 export interface CharacterProps {
