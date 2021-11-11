@@ -1,3 +1,4 @@
+import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import { ArenaElemObj } from '../../types/ArenaElemObj';
@@ -23,12 +24,35 @@ const Character: React.FC<ArenasProps> = ({ arenas }) => {
 
 
     {arenas.map((arena) => {
-      return <div key={arena.id} className="characterCard" onClick={handleView(arena.id)}>
-        <img className="characterCard__image" src={arena.img} alt="" />
-        <p className="characterCard__name">{arena.name}</p>
+      //<div key={arena.id} className="characterCard" onClick={handleView(arena.id)}>
+      //   <img className="characterCard__image" src={arena.img} alt="" />
+      //   <p className="characterCard__name">{arena.name}</p>
 
-        
-      </div>
+
+      // </div>
+
+
+      return <Card key={arena.id}sx={{ maxWidth: 150 }} onClick={handleView(arena.id)} >
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            image={arena.img}
+            alt="green iguana"
+          />
+          <CardContent
+
+            sx={{
+              bgcolor: "#fff"
+            }}
+          >
+            <Typography textAlign="center" fontSize="1rem" gutterBottom variant="h5" component="div">
+              {arena.name}
+            </Typography>
+
+          </CardContent>
+        </CardActionArea>
+      </Card>
+
     })}
   </div>)
 

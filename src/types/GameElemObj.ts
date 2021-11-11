@@ -1,3 +1,4 @@
+import { ArenaElemObj } from "./ArenaElemObj";
 import { CharacterElemObj } from "./CharacterElemObj";
 
 export type GameElemObj =  {
@@ -7,4 +8,5 @@ export type GameElemObj =  {
     year?:number;
     description?: string;
     characters:CharacterElemObj[];
+    arenas:ArenaElemObj[];
   }

@@ -21,7 +21,7 @@ const GameCard: React.FC<GameCardProps> = ({name,img,id}) => {
   }
   
   
-  return <Card sx={{ maxWidth: 150 }}>
+  return <Card sx={{ maxWidth: 150 }} onClick={handleView}>
 <CardActionArea>
   <CardMedia
     component="img"

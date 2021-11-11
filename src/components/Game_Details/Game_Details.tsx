@@ -1,37 +1,56 @@
 import { Autocomplete, Button, TextField } from '@mui/material';
 import * as React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { CharacterElemObj } from '../../types/CharacterElemObj';
-import { characterOptions } from '../../types/characterOptions';
+import { tagOptions } from '../../types/TagOptions';
 import { GameElemObj } from '../../types/GameElemObj';
+import Arenas from '../Arenas/Arenas';
 import Character from '../Character/Character';
 import './Game_Details.css'
 
 interface Game_DetailsProps {
 
     list: GameElemObj[];
-    characterOptions:characterOptions[];
-    onAddCharacters:(gameId:number, charactersId:number[])=>void;
+    characterOptions: tagOptions[];
+    arenasOptions: tagOptions[];
+    onAddCharacters: (gameId: number, charactersId: number[]) => void;
+    onAddArenas: (gameId: number, arenasId: number[]) => void;
 }
 
-const Game_Details: React.FC<Game_DetailsProps> = ({ list,characterOptions,onAddCharacters }) => {
+const Game_Details: React.FC<Game_DetailsProps> = ({ list, characterOptions, arenasOptions, onAddCharacters, onAddArenas }) => {
 
     const [charactersState, setCharactersState] = React.useState<number[]>([]);
+    const [arenasState, setArenasState] = React.useState<number[]>([]);
 
-    const handleTagsChange = (event: React.SyntheticEvent<Element, Event>, values: (characterOptions)[]) => {
-       const transformed = values.map((value) => {
-          // si el valor es un string, quiere decir que el usurio está agregando una nueva opción
-         
-          return value.id;
-       });
-       setCharactersState(transformed);
+    const handleTagsCharacter = (event: React.SyntheticEvent<Element, Event>, values: (tagOptions)[]) => {
+        const transformed = values.map((value) => {
+            // si el valor es un string, quiere decir que el usurio está agregando una nueva opción
+
+            return value.id;
+        });
+        setCharactersState(transformed);
     };
 
-    const handleBtnClick=()=>{
+    const handleBtnAddCharacters = () => {
 
-        onAddCharacters(id,charactersState)
+        onAddCharacters(id, charactersState)
     }
-    
+
+    const handleTagsArenas = (event: React.SyntheticEvent<Element, Event>, values: (tagOptions)[]) => {
+        const transformed = values.map((value) => {
+            // si el valor es un string, quiere decir que el usurio está agregando una nueva opción
+
+            return value.id;
+        });
+        setArenasState(transformed);
+    };
+
+    const handleBtnAddArenas = () => {
+
+        onAddArenas(id, arenasState)
+    }
+
+
+
     const { id: idString } = useParams<{ id: string }>();
     const id = parseFloat(idString);
 
@@ -48,7 +67,7 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list,characterOptions,onAdd
         return <Redirect to="/404" />;
     }
 
-    const { name, img, description,characters } = elem;
+    const { name, img, description, characters, arenas } = elem;
 
     return <div>
 
@@ -58,7 +77,7 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list,characterOptions,onAdd
             <h3 className="title">{name}</h3>
         </div>
 
-        <h4 className="description">Description</h4>
+        <h4 className="">Description</h4>
 
         <p className="description">{description}</p>
 
@@ -68,11 +87,11 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list,characterOptions,onAdd
 
             <div className="characterContainer">
 
-            
 
-            <Character characters={characters}></Character>
-            
-            
+
+                <Character characters={characters}></Character>
+
+
             </div>
 
         </section>
@@ -83,11 +102,13 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list,characterOptions,onAdd
 
             <div className="scenaryContainer">
 
-            //aqui van los escenarios
+                <Arenas arenas={arenas}></Arenas>
             </div>
 
         </section>
 
+
+        {/* formulario personajes */}
         <Autocomplete
             multiple
 
@@ -100,14 +121,38 @@ const Game_Details: React.FC<Game_DetailsProps> = ({ list,characterOptions,onAdd
             options={characterOptions}
             getOptionLabel={(option) => option.label}
             renderInput={(params) => <TextField {...params} label="characters" placeholder="Add a tag" />}
-            onChange={handleTagsChange}
+            onChange={handleTagsCharacter}
             //value={tags as any}
             isOptionEqualToValue={(option, value) => {
                 return option.label === value.label;
             }}
         />
-        <Button variant="contained" onClick={handleBtnClick}>Submit</Button>
-       
+        <Button variant="contained" onClick={handleBtnAddCharacters}>Submit</Button>
+
+        {/* formulario arenas */}
+
+            <h2>Arenas</h2>
+        <Autocomplete
+            multiple
+
+            disableClearable
+            style={{
+                width: "100%",
+
+            }}
+            id="combo-box-demo"
+            options={arenasOptions}
+            getOptionLabel={(option) => option.label}
+            renderInput={(params) => <TextField {...params} label="arenas" placeholder="Add a tag" />}
+            onChange={handleTagsArenas}
+            //value={tags as any}
+            isOptionEqualToValue={(option, value) => {
+                return option.label === value.label;
+            }}
+        />
+
+        <Button variant="contained" onClick={handleBtnAddArenas}>Submit</Button>
+
 
     </div>;
 }

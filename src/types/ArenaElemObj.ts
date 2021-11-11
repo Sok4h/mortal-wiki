@@ -4,6 +4,5 @@ export type ArenaElemObj= {
     img:string,
     name:string,
     description:string,
-    conceptArt:string[]
-
+    conceptArt:string[];
 }

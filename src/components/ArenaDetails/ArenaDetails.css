@@ -1,0 +1,17 @@
+.conceptArtContainer{
+
+    width: 100%;
+    overflow-x: scroll ;
+    display: flex;
+    gap: 1em;
+}
+
+.conceptArt{
+
+    min-width:200px;
+}
+
+.conceptArt img{
+
+    width:100%;
+}

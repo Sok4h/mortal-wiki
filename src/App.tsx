@@ -18,7 +18,8 @@ import Arenas from './components/Arenas/Arenas';
 import { TagOption } from './types/TagOption';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './utils/theme';
-import { characterOptions } from './types/characterOptions';
+import { tagOptions } from './types/TagOptions';
+import ArenaDetails from './components/ArenaDetails/ArenaDetails';
 
 
 
@@ -36,7 +37,8 @@ function App() {
        en esta ocasión, además de añadir los mejores gráficos de la serie y el gore más
         descarnado en los llamados Fatality, presentará luchadores clásicos y nuevos, 
         más modos de juego y una oferta online que quiere marcar un antes y un después en los eSports.`,
-        characters:[]
+      characters: [],
+      arenas: []
     }
   ]);
 
@@ -52,14 +54,18 @@ function App() {
   ]);
 
   const [arenasElems, setArenas] = React.useState<ArenaElemObj[]>([
-   // {
-      // id: 0,
-      // name: 'The pit',
-      // description: "EarthRealm",
-      // img: 'https://static.wikia.nocookie.net/mkwikia/images/7/72/Shao_Kahn%27s_Coliseum.jpg',
-      // conceptArt:["https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png"]
+    {
+      id: 0,
+      name: 'The pit',
+      description: "EarthRealm",
+      img: 'https://static.wikia.nocookie.net/mkwikia/images/7/72/Shao_Kahn%27s_Coliseum.jpg',
+      conceptArt: ["https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png",
+        "https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png",
+        "https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png",
+        "https://static.wikia.nocookie.net/mortalkombat/images/3/3e/Goros_lair.png"
+      ]
 
-   // }
+    }
 
   ]);
 
@@ -72,27 +78,44 @@ function App() {
       name: newGameElem.name,
       year: newGameElem.year,
       description: newGameElem.description,
-      characters:[]
+      characters: [],
+      arenas: []
     });
 
-  
+
     setGameElems(arrayCopy);
   }
 
-  const initialCharacters:characterOptions[] = [];
-  charactersElems.map((char)=>{
+  const initialCharacters: tagOptions[] = [];
+  charactersElems.map((char) => {
 
-    initialCharacters.push({label:char.name,id:char.id});
+    initialCharacters.push({ label: char.name, id: char.id });
 
   });
 
-  const [characterOptions, setCharacterOptions] = React.useState<characterOptions[]>(initialCharacters);
+  const initialArenas: tagOptions[] = [];
+  arenasElems.map((arena) => {
 
-  const handleAddCharacterOption = (newCharacterOption: characterOptions) => {
+    initialArenas.push({ label: arena.name, id: arena.id });
+
+  });
+
+  const [characterOptions, setCharacterOptions] = React.useState<tagOptions[]>(initialCharacters);
+
+  const handleAddCharacterOption = (newCharacterOption: tagOptions) => {
     setCharacterOptions([...characterOptions, newCharacterOption]);
   };
 
-  
+  const [arenasOptions, setArenasOptions] = React.useState<tagOptions[]>(initialArenas);
+
+  const handleAddArenaOption = (newArenaOption: tagOptions) => {
+    setArenasOptions([...arenasOptions, newArenaOption]);
+  };
+
+
+
+
+
   const handleCharacterCreate = (newCharaterElem: CharacterElemObj) => {
 
     const arrayCopy = charactersElems.slice();
@@ -104,23 +127,23 @@ function App() {
       biography: newCharaterElem.biography
     });
 
-    
+
     setCharacters(arrayCopy);
-    handleAddCharacterOption({label: newCharaterElem.name,id:newCharaterElem.id})
+    handleAddCharacterOption({ label: newCharaterElem.name, id: newCharaterElem.id })
   }
 
   const [tagOptions, setTagOptions] = React.useState<TagOption[]>([
-    { label: "test 1" },
-    { label: "test 2" },
-    { label: "Animals" },
+    // { label: "test 1" },
+    // { label: "test 2" },
+    // { label: "Animals" },
   ]);
 
   const handleAddTagOption = (newTagOption: TagOption) => {
     setTagOptions([...tagOptions, newTagOption]);
   };
 
-  
-  
+
+
 
   const handleArenasCreate = (newArenasElem: ArenaElemObj) => {
 
@@ -130,41 +153,72 @@ function App() {
       img: newArenasElem.img,
       name: newArenasElem.name,
       description: newArenasElem.description,
-      conceptArt:newArenasElem.conceptArt
-
+      conceptArt: newArenasElem.conceptArt
 
     });
-
-    
     setArenas(arrayCopy);
+
+    handleAddArenaOption({ label: newArenasElem.name, id: newArenasElem.id })
   }
 
-  const addCharacters= (gameId:number,charactersId:number[]) => {
+  const addArenas = (gameId: number, arenasId: number[]) => {
 
     const arrayCopy = gameElems.slice();
     const editIndex = gameElems.findIndex((elem) => {
-      if(elem.id === gameId) {
+      if (elem.id === gameId) {
         return true;
       }
       return false;
     });
 
-    const charactersObj:CharacterElemObj[]=[];
-     charactersId.map((id) => {
-      
-     charactersElems.map((char)=>{
+    const arenasObj: ArenaElemObj[] = [];
+    arenasId.map((id) => {
 
-      if(char.id===id){
-        charactersObj.push(char);
-      }
-     })
-      
-   
+      arenasElems.map((arena) => {
+
+        if (arena.id === id) {
+          arenasObj.push(arena);
+        }
+      })
+
+
     })
 
     arrayCopy[editIndex] = {
       ...gameElems[editIndex],
-      characters: charactersObj 
+      arenas: arenasObj
+    }
+
+    setGameElems(arrayCopy);
+
+
+  }
+  const addCharacters = (gameId: number, charactersId: number[]) => {
+
+    const arrayCopy = gameElems.slice();
+    const editIndex = gameElems.findIndex((elem) => {
+      if (elem.id === gameId) {
+        return true;
+      }
+      return false;
+    });
+
+    const charactersObj: CharacterElemObj[] = [];
+    charactersId.map((id) => {
+
+      charactersElems.map((char) => {
+
+        if (char.id === id) {
+          charactersObj.push(char);
+        }
+      })
+
+
+    })
+
+    arrayCopy[editIndex] = {
+      ...gameElems[editIndex],
+      characters: charactersObj
     }
 
     setGameElems(arrayCopy);
@@ -172,72 +226,76 @@ function App() {
 
   }
 
-  
+
   return (
 
     <ThemeProvider theme={theme}>
-    <HashRouter>
-      <div className="App">
+      <HashRouter>
+        <div className="App">
 
-        <Header></Header>
-        <Switch>
-          <Route path="/form">
-            <h2> juego</h2>
-            <GameForm onCreate={handleCreate} />
-            <h2> personaje</h2>
-            <CharacterForm onCreate={handleCharacterCreate} />
-            <h2> arena</h2>
-            <ArenasForm onCreate={handleArenasCreate} addTagOption={handleAddTagOption} tagOptions={tagOptions}></ArenasForm>
-          </Route>
-
-
-          <Route path="/home">
-
-            <Banner name="Mk Deception" img="https://f3.trucoteca.com/fotos/6746/mortal-komat-deception-11.jpg"></Banner>
-
-            <h3 className="juegosDestacados">Juegos Destacados</h3>
-            <article className="gallery">
-
-              <section className="popularGames">
-
-                {gameElems.map((elem) => {
+          <Header></Header>
+          <Switch>
+            <Route path="/form">
+              <h2> juego</h2>
+              <GameForm onCreate={handleCreate} />
+              <h2> personaje</h2>
+              <CharacterForm onCreate={handleCharacterCreate} />
+              <h2> arena</h2>
+              <ArenasForm onCreate={handleArenasCreate} addTagOption={handleAddTagOption} tagOptions={tagOptions}></ArenasForm>
+            </Route>
 
 
-                  return <GameCard key={elem.id} id={elem.id} name={elem.name} img={elem.img} />;
-                })}
-              </section>
-            </article>
-          </Route>
+            <Route path="/home">
 
-          <Route path="/details/:id">
-            <Game_Details onAddCharacters={addCharacters} list={gameElems} characterOptions={characterOptions}></Game_Details>
-          </Route>
+              <Banner name="Mk Deception" img="https://f3.trucoteca.com/fotos/6746/mortal-komat-deception-11.jpg"></Banner>
 
-          <Route path="/character/:id">
-            <Character_Details list={charactersElems}></Character_Details>
-          </Route>
+              <h3 className="juegosDestacados">Juegos Destacados</h3>
+              <article className="gallery">
+
+                <section className="popularGames">
+
+                  {gameElems.map((elem) => {
 
 
+                    return <GameCard key={elem.id} id={elem.id} name={elem.name} img={elem.img} />;
+                  })}
+                </section>
+              </article>
+            </Route>
 
-          <Route path="/characters" exact>
+            <Route path="/details/:id">
+              <Game_Details onAddCharacters={addCharacters} onAddArenas={addArenas} list={gameElems} characterOptions={characterOptions} arenasOptions={arenasOptions}></Game_Details>
+            </Route>
 
-            <Character
-              characters={charactersElems}
-            ></Character>
-          </Route>
-
-          <Route path="/arenas" exact>
-            <Arenas arenas={arenasElems}></Arenas>
-
-          </Route>
-        </Switch>
+            <Route path="/character/:id">
+              <Character_Details games={gameElems} list={charactersElems}></Character_Details>
+            </Route>
+            <Route path="/arena/:id">
+              <ArenaDetails games={gameElems} arenas={arenasElems}></ArenaDetails>
+            </Route>
 
 
-      </div>
-    </HashRouter>
+
+            <Route path="/characters" exact>
+
+              <Character
+                characters={charactersElems}
+              ></Character>
+            </Route>
+
+            <Route path="/arenas" exact>
+              <Arenas arenas={arenasElems}></Arenas>
+
+            </Route>
+          </Switch>
+
+
+        </div>
+      </HashRouter>
     </ThemeProvider>
   );
 
 }
+
 
 export default App;

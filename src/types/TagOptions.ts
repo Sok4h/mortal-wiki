@@ -1,4 +1,4 @@
-export type characterOptions={
+export type tagOptions={
     
     label:string,
     id:number

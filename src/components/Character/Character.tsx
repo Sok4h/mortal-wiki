@@ -26,7 +26,7 @@ const Character: React.FC<CharacterProps> = ({ characters }) => {
 
     {characters.map((char) => {
 
-      return <Card  sx={{ maxWidth: 345 }  } onClick={handleView(char.id)}>
+      return <Card  key={char.id} sx={{ maxWidth: 345 }  } onClick={handleView(char.id)}>
         <CardActionArea>
           <CardMedia
             component="img"
